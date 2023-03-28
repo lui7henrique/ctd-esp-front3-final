@@ -13,7 +13,7 @@ type Props = {
 
 const Header: FC<Props> = ({ variant }: Props) => {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" role="header">
       <Toolbar disableGutters>
         <NextLink href="/" passHref>
           <MUILink

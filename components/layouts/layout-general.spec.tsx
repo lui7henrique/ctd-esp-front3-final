@@ -40,6 +40,7 @@ describe("LayoutGeneral", () => {
           <p>children</p>
         </LayoutGeneral>
       );
+
       const footer = screen.getByText("Footer");
       expect(footer).toBeInTheDocument();
     });

@@ -1,18 +1,21 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import { Link } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 
 const GeneralFooter = () => {
   return (
     <Box
       component={"footer"}
       display={"flex"}
+      flexDirection="column"
+      gap={1}
       p={"1rem 0"}
       alignItems="center"
       justifyContent={"center"}
       borderTop={"1px solid #eaeaea"}
       sx={{ backgroundColor: "#000" }}
+      role="footer"
     >
       <Link
         href="https://www.digitalhouse.com"
@@ -40,6 +43,12 @@ const GeneralFooter = () => {
           />
         </Box>
       </Link>
+
+      <Box width={200} borderBottom="1px solid #fff" sx={{ opacity: 0.1 }} />
+
+      <Typography color={"#ccc"} fontSize={12}>
+        Made 🖤 by Luiz Henrique
+      </Typography>
     </Box>
   );
 };

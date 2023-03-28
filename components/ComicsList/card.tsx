@@ -65,6 +65,8 @@ const styles = (theme: Theme) => ({
   },
 });
 
+export const ComicCardTestId = "comic_card";
+
 export const ComicCard = (props: ComicCardProps) => {
   const { comic } = props;
 
@@ -74,6 +76,7 @@ export const ComicCard = (props: ComicCardProps) => {
   return (
     <Card
       sx={{ height: "100%", display: "grid", gridTemplateColumns: "1fr 3fr" }}
+      data-testid={ComicCardTestId}
     >
       <CardMedia
         sx={{
@@ -110,7 +113,7 @@ export const ComicCard = (props: ComicCardProps) => {
             size="small"
             style={{ width: "100%" }}
           >
-            Detalhes
+            See more
           </Button>
 
           <Button
@@ -119,7 +122,7 @@ export const ComicCard = (props: ComicCardProps) => {
             size="small"
             style={{ width: "100%" }}
           >
-            Comprar
+            Buy
           </Button>
         </CardActions>
       </CardContent>

@@ -8,7 +8,7 @@ export interface Comic {
   title: string;
   issueNumber: number;
   variantDescription: string;
-  description?: string;
+  description?: string | null;
   modified: string;
   isbn: string;
   upc: string;
