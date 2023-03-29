@@ -2,9 +2,9 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
-import { marvel } from "dh-marvel/services/marvel/marvel.service";
-import { Comic, GetComics } from "types/getComics";
+import { Comic } from "types/getComics";
 import { ComicsList } from "dh-marvel/components/ComicsList";
+import { getFirstTwelveComics } from "utils/comics/getFirstTwelveComics";
 
 type IndexProps = {
   comics: Array<Comic>;
@@ -30,23 +30,8 @@ const Index: NextPage<IndexProps> = (props) => {
 
 export default Index;
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const {
-    data: {
-      data: { results },
-    },
-  } = await marvel.get<GetComics>("/comics", {
-    params: { format: "comic", limit: 100 },
-  });
-
-  const comics = results
-    .filter((comic) => {
-      const image = comic.images[0];
-      const isNotFound = image?.path.includes("56f");
-
-      return image && !isNotFound;
-    })
-    .slice(0, 12);
+export const getStaticProps: GetStaticProps = async () => {
+  const comics = await getFirstTwelveComics();
 
   return {
     props: { comics },

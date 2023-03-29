@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 
 import { Comic } from "types/getComics";
 import Button from "@mui/material/Button";
+import { useRouter } from "next/router";
 
 type ComicCardProps = {
   comic: Comic;
@@ -73,6 +74,8 @@ export const ComicCard = (props: ComicCardProps) => {
   const { title, id, thumbnail } = comic;
   const image = `${thumbnail.path}.${thumbnail.extension}`;
 
+  const { push } = useRouter();
+
   return (
     <Card
       sx={{ height: "100%", display: "grid", gridTemplateColumns: "1fr 3fr" }}
@@ -112,6 +115,7 @@ export const ComicCard = (props: ComicCardProps) => {
             color="error"
             size="small"
             style={{ width: "100%" }}
+            onClick={() => push(`/comics/${id}`)}
           >
             See more
           </Button>
