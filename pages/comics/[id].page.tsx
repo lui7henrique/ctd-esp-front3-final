@@ -13,7 +13,6 @@ type IndexProps = {
 
 const Index: NextPage<IndexProps> = (props) => {
   const { comic } = props;
-  console.log({ comic });
 
   return (
     <>
