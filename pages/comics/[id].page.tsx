@@ -37,14 +37,6 @@ type Params = {
 
 type CustomProps = {};
 
-const redirect = {
-  props: {},
-  redirect: {
-    destination: "/",
-    permanent: true,
-  },
-};
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const comics = await getFirstTwelveComics();
 

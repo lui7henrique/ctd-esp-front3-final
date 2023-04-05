@@ -4,29 +4,32 @@ import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import { theme } from "dh-marvel/styles/material-theme";
 
 import NextNProgress from "nextjs-progressbar";
+import { CartContextProvider } from "context/Cart";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <LayoutGeneral>
-        <Component {...pageProps} />
+      <CartContextProvider>
+        <CssBaseline />
+        <LayoutGeneral>
+          <Component {...pageProps} />
 
-        <NextNProgress
-          color="#ED1D24"
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={4}
-          showOnShallow={true}
-        />
-      </LayoutGeneral>
-      <style jsx global>{`
-        /* Other global styles such as 'html, body' etc... */
+          <NextNProgress
+            color="#ED1D24"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={4}
+            showOnShallow={true}
+          />
+        </LayoutGeneral>
+        <style jsx global>{`
+          /* Other global styles such as 'html, body' etc... */
 
-        #__next {
-          height: 100%;
-        }
-      `}</style>
+          #__next {
+            height: 100%;
+          }
+        `}</style>
+      </CartContextProvider>
     </ThemeProvider>
   );
 }

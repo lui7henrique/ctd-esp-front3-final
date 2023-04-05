@@ -7,15 +7,17 @@ import { Comic } from "types/getComic";
 import { formatCurrency } from "utils/currency/format";
 import Link from "next/link";
 import { getIdByResourceURI } from "utils/characters/getIdByResourceURI";
+import { useCart } from "context/Cart";
 
 type ComicProps = {
   comic: Comic;
 };
 
 export const ComicTemplate = (props: ComicProps) => {
-  const {
-    comic: { thumbnail, title, prices, description, characters, ...comic },
-  } = props;
+  const { comic } = props;
+  const { thumbnail, title, prices, description, characters } = comic;
+
+  const { handleAddComicToCart } = useCart();
 
   const image = `${thumbnail.path}.${thumbnail.extension}`;
   const price = prices[0].price;
@@ -73,13 +75,19 @@ export const ComicTemplate = (props: ComicProps) => {
                             background: "#e62429",
                           },
                         }}
+                        onClick={() => handleAddComicToCart(comic)}
                       >
                         <ShoppingCart />
                       </IconButton>
                     </Tooltip>
                   </>
                 ) : (
-                  <Typography variant="h2" color="#fff" fontWeight="bold">
+                  <Typography
+                    variant="h2"
+                    color="#fff"
+                    fontWeight="bold"
+                    fontSize={16}
+                  >
                     Out of stock 😿
                   </Typography>
                 )}
@@ -93,39 +101,41 @@ export const ComicTemplate = (props: ComicProps) => {
             />
             <Typography color="#ccc">{description}</Typography>
 
-            <Box marginY="1rem">
-              <Typography
-                variant="h4"
-                fontSize="1.1rem"
-                fontWeight="bold"
-                color="#ccc"
-              >
-                Characters:
-              </Typography>
+            {!!characters.items.length && (
+              <Box marginY="1rem">
+                <Typography
+                  variant="h4"
+                  fontSize="1.1rem"
+                  fontWeight="bold"
+                  color="#ccc"
+                >
+                  Characters list:
+                </Typography>
 
-              <Box>
-                {characters.items.map((character) => {
-                  const { resourceURI, name } = character;
-                  const id = getIdByResourceURI(resourceURI);
+                <Box>
+                  {characters.items.map((character) => {
+                    const { resourceURI, name } = character;
+                    const id = getIdByResourceURI(resourceURI);
 
-                  return (
-                    <Box>
-                      <Link href={`/characters/${id}`}>
-                        <a
-                          style={{
-                            fontSize: "1rem",
-                            color: "#ccc",
-                            textDecoration: "none",
-                          }}
-                        >
-                          {character.name}
-                        </a>
-                      </Link>
-                    </Box>
-                  );
-                })}
+                    return (
+                      <Box>
+                        <Link href={`/characters/${id}`}>
+                          <a
+                            style={{
+                              fontSize: "1rem",
+                              color: "#ccc",
+                              textDecoration: "none",
+                            }}
+                          >
+                            {character.name}
+                          </a>
+                        </Link>
+                      </Box>
+                    );
+                  })}
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         </Box>
       </Box>
