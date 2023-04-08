@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/layouts/layout-checkout.tsx</title>
+    <title>Code coverage report for pages/checkout/index.page.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/layouts</a> layout-checkout.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/checkout</a> index.page.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,17 +86,14 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,30 +105,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from "react";
-import { FC, PropsWithChildren } from "react";
-import { Stack } from "@mui/material";
-import Box from "@mui/material/Box";
-import GeneralHeader from "dh-marvel/components/layouts/header/general-header.component";
-import GeneralFooter from "dh-marvel/components/layouts/footer/general-footer.component";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { NextPage } from "next";
+import Head from <span class="cstat-no" title="statement not covered" >"next/head";</span>
 &nbsp;
-const LayoutCheckout: FC&lt;PropsWithChildren&gt; = ({
-  children,
-}: PropsWithChildren) =&gt; {
-  return (
+import BodySingle from <span class="cstat-no" title="statement not covered" >"dh-marvel/components/layouts/body/single/body-single";</span>
+import { CheckoutTemplate } from <span class="cstat-no" title="statement not covered" >"dh-marvel/components/CheckoutTemplate";</span>
+&nbsp;
+const Checkout: NextPage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
-      &lt;Stack direction={"column"} height={"100%"}&gt;
-        &lt;GeneralHeader variant={"simple"} /&gt;
-        &lt;Box display={"flex"} flexGrow={1}&gt;
-          {children}
-        &lt;/Box&gt;
-        &lt;GeneralFooter /&gt;
-      &lt;/Stack&gt;
+      &lt;Head&gt;
+        &lt;title&gt;Create Next App&lt;/title&gt;
+        &lt;meta name="description" content="Generated by create next app" /&gt;
+        &lt;link rel="icon" href="/favicon.ico" /&gt;
+      &lt;/Head&gt;
+&nbsp;
+      &lt;BodySingle&gt;
+        &lt;CheckoutTemplate /&gt;
+      &lt;/BodySingle&gt;
     &lt;/&gt;
   );
 };
-export default LayoutCheckout;
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export default <span class="cstat-no" title="statement not covered" >C</span></span>heckout;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
