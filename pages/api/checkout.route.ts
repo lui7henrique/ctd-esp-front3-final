@@ -12,7 +12,7 @@ import {
 const serverError = "error";
 
 export const invalidAddress = "invalid";
-export const validCard = "4242 4242 4242 4242".replace(" ", "");
+export const validCard = "4242 4242 4242 4242".replaceAll(" ", "");
 export const withoutFundsCard = "4111 4111 4111 4111".replace(" ", "");
 export const withoutAuthorizationCard = "4000 4000 4000 4000".replace(" ", "");
 
@@ -33,24 +33,32 @@ export default function handler(
     res.status(405).json(ERROR_METHOD_NOT_ALLOWED);
     return;
   }
+
   try {
     const body: CheckoutInput = req.body;
+
     if (body.customer.address.address2 === invalidAddress) {
       res.status(400).json(ERROR_INCORRECT_ADDRESS);
       return;
     }
+
     if (body.card.number === withoutFundsCard) {
       res.status(400).json(ERROR_CARD_WITHOUT_FUNDS);
       return;
     }
+
     if (body.card.number === withoutAuthorizationCard) {
       res.status(400).json(ERROR_CARD_WITHOUT_AUTHORIZATION);
       return;
     }
+
     if (body.card.number === validCard) {
       res.status(200).json({ data: body });
       return;
     }
+
+    console.log({ card: body.card.number, validCard });
+
     res.status(400).json(ERROR_CARD_DATA_INCORRECT);
   } catch (err) {
     console.log(err);

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const ERROR_METHOD_NOT_ALLOWED = {
   error: "METHOD_NOT_ALLOWED",
   message: "Method not allowed",
@@ -30,3 +32,7 @@ export const ERROR_SERVER = {
   error: "SERVER_ERROR",
   message: "Server error. Please try again in a few seconds",
 };
+
+export const api = axios.create({
+  baseURL: "/api",
+});

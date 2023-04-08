@@ -8,7 +8,13 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import { CheckoutSchemaType } from "./type";
 
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+
+type Focused = "name" | "number" | "expiry" | "cvc" | "";
+type Fields = keyof Pick<
+  CheckoutSchemaType,
+  "cardNumber" | "ownerName" | "expirationDate" | "securityCode"
+>;
 
 export const Payment = () => {
   const {
@@ -17,9 +23,20 @@ export const Payment = () => {
     watch,
   } = useFormContext<CheckoutSchemaType>();
 
+  const [focus, setFocus] = useState<Focused>();
+
   const { cardNumber, expirationDate, securityCode, ownerName } = watch();
 
-  console.log({ cardNumber });
+  const handleChangeFocus = (field: Fields) => {
+    const name: Record<Fields, Focused> = {
+      cardNumber: "number",
+      expirationDate: "expiry",
+      ownerName: "name",
+      securityCode: "cvc",
+    };
+
+    setFocus(name[field]);
+  };
 
   return (
     <Card
@@ -37,7 +54,11 @@ export const Payment = () => {
 
       <Box display="grid" gridTemplateColumns="2fr 1fr" gap="1rem">
         <Box display="grid" gridTemplateColumns="repeat(2, 1fr)" gap="0.5rem">
-          <InputMask mask="9999 9999 9999 9999" {...register("cardNumber")}>
+          <InputMask
+            mask="9999 9999 9999 9999"
+            onFocus={() => handleChangeFocus("cardNumber")}
+            {...register("cardNumber")}
+          >
             {
               ((props: any) => {
                 return (
@@ -58,10 +79,15 @@ export const Payment = () => {
             variant="standard"
             error={!!errors.ownerName}
             helperText={errors.ownerName?.message}
+            onFocus={() => handleChangeFocus("ownerName")}
             {...register("ownerName")}
           />
 
-          <InputMask mask="99/99" {...register("expirationDate")}>
+          <InputMask
+            mask="99/99"
+            {...register("expirationDate")}
+            onFocus={() => handleChangeFocus("cardNumber")}
+          >
             {
               ((props: any) => {
                 return (
@@ -84,6 +110,7 @@ export const Payment = () => {
             error={!!errors.securityCode}
             helperText={errors.securityCode?.message}
             inputProps={{ maxLength: 3, minLength: 3 }}
+            onFocus={() => handleChangeFocus("securityCode")}
             {...register("securityCode")}
           />
         </Box>
@@ -93,6 +120,7 @@ export const Payment = () => {
           expiry={expirationDate ?? ""}
           cvc={securityCode ?? ""}
           name={ownerName ?? ""}
+          focused={focus}
         />
       </Box>
     </Card>

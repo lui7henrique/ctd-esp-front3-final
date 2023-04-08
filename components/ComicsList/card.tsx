@@ -5,76 +5,28 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 
 import { Comic } from "types/getComics";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
+import { useCart } from "context/Cart";
 
 type ComicCardProps = {
   comic: Comic;
 };
-
-const styles = (theme: Theme) => ({
-  card: {
-    display: "block",
-    margin: 5,
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-    },
-    borderRadius: 0,
-  },
-
-  caption: {
-    textTransform: "uppercase",
-  },
-
-  title: {
-    textTransform: "uppercase",
-    color: theme.palette.primary.main,
-    fontWeight: "bold",
-  },
-
-  media: {
-    width: "auto",
-    height: 300,
-    [theme.breakpoints.up("sm")]: {
-      width: 1500,
-    },
-    flexBasis: "50%",
-  },
-
-  content: {
-    display: "flex",
-    flexDirection: "column",
-    flexBasis: "50%",
-    backgroundColor: "#eee",
-  },
-
-  cardText: {
-    flex: "1 0 auto",
-    marginBottom: 15,
-    [theme.breakpoints.up("sm")]: {
-      marginBottom: 0,
-    },
-  },
-
-  linkAction: {
-    textDecoration: "none",
-    textTransform: "uppercase",
-    color: theme.palette.primary.main,
-    fontWeight: "bold",
-  },
-});
 
 export const ComicCardTestId = "comic_card";
 
 export const ComicCard = (props: ComicCardProps) => {
   const { comic } = props;
 
-  const { title, id, thumbnail } = comic;
-  const image = `${thumbnail.path}.${thumbnail.extension}`;
-
   const { push } = useRouter();
+  const { handleAddComicToCart } = useCart();
+
+  const { title, id, thumbnail, prices } = comic;
+  const image = `${thumbnail.path}.${thumbnail.extension}`;
+  const price = prices[0].price;
 
   return (
     <Card
@@ -125,6 +77,8 @@ export const ComicCard = (props: ComicCardProps) => {
             color="error"
             size="small"
             style={{ width: "100%" }}
+            onClick={() => handleAddComicToCart(comic)}
+            disabled={!price}
           >
             Buy
           </Button>
