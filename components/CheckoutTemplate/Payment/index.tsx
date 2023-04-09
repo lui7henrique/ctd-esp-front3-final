@@ -1,20 +1,22 @@
 import { useFormContext } from "react-hook-form";
+import { ReactNode, useState } from "react";
 import Cards from "react-credit-cards-2";
-import InputMask, { Props as ReactInputMaskProps } from "react-input-mask";
+import InputMask from "react-input-mask";
 
 import { Box, Card, TextField, Typography } from "@mui/material";
 import PaymentIcon from "@mui/icons-material/Payment";
 
-import { CheckoutSchemaType } from "./type";
+import { CheckoutSchemaType } from "../type";
 
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import { ReactNode, useState } from "react";
 
 type Focused = "name" | "number" | "expiry" | "cvc" | "";
 type Fields = keyof Pick<
   CheckoutSchemaType,
   "cardNumber" | "ownerName" | "expirationDate" | "securityCode"
 >;
+
+export const paymentTestId = "payment";
 
 export const Payment = () => {
   const {
@@ -46,6 +48,7 @@ export const Payment = () => {
         flexDirection: "column",
         gap: "1rem",
       }}
+      data-testid={paymentTestId}
     >
       <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
         <PaymentIcon />

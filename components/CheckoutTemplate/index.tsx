@@ -16,8 +16,8 @@ import { checkoutSchema } from "./schema";
 import { CheckoutSchemaType } from "./type";
 import { api } from "dh-marvel/services/checkout/checkout.errors";
 import { AxiosError } from "axios";
-import { useRouter } from "next/router";
-import { useCart } from "context/Cart";
+
+import { useCart } from "../../context/Cart";
 
 type Toast = {
   isOpen: boolean;

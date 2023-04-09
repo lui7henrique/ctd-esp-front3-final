@@ -2,7 +2,9 @@ import { Box, Card, TextField, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 import { useFormContext } from "react-hook-form";
-import { CheckoutSchemaType } from "./type";
+import { CheckoutSchemaType } from "../type";
+
+export const personalDataTestId = "personal-data";
 
 export const PersonalData = () => {
   const {
@@ -18,6 +20,7 @@ export const PersonalData = () => {
         flexDirection: "column",
         gap: "1rem",
       }}
+      data-testid={personalDataTestId}
     >
       <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
         <PersonIcon />

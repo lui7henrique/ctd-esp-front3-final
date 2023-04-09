@@ -7,14 +7,16 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { useCart } from "context/Cart";
-import { formatCurrency } from "utils/currency/format";
+import { useCart } from "../../../context/Cart";
+import { formatCurrency } from "../../../utils/currency/format";
+
+export const summaryTestId = "summary";
 
 export const Summary = () => {
   const { cart } = useCart();
 
   if (!cart) {
-    return <p>no comic on cart :(</p>;
+    return <p data-testid={summaryTestId}>no comic on cart.</p>;
   }
 
   const { title, id, thumbnail, prices } = cart;
@@ -22,7 +24,10 @@ export const Summary = () => {
   const price = prices[0].price;
 
   return (
-    <Card sx={{ display: "grid", gridTemplateColumns: "2fr 3fr" }}>
+    <Card
+      sx={{ display: "grid", gridTemplateColumns: "2fr 3fr" }}
+      data-testid={summaryTestId}
+    >
       <Box
         width="100%"
         sx={{

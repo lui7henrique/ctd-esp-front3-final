@@ -1,9 +1,11 @@
-import { Box, Card, Grid, TextField, Typography } from "@mui/material";
+import { Box, Card, TextField, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 
 import { useFormContext } from "react-hook-form";
 
-import { CheckoutSchemaType } from "./type";
+import { CheckoutSchemaType } from "../type";
+
+export const addressTestId = "address";
 
 export const Address = () => {
   const {
@@ -19,6 +21,7 @@ export const Address = () => {
         flexDirection: "column",
         gap: "1rem",
       }}
+      data-testid={addressTestId}
     >
       <Box display="flex" alignItems="center" gap="0.5rem" width="100%">
         <HomeIcon />
