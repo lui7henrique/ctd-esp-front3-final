@@ -4,22 +4,24 @@ import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { formatCurrency } from "utils/currency/format";
-
-type BasicInfoProps = {
-  label: string;
-  value: string;
-};
+import { useEffect } from "react";
 
 export const SuccessTemplate = () => {
   const { cart, checkout } = useCart();
   const { push } = useRouter();
 
-  if (!cart && !checkout) {
-    push("/");
+  useEffect(() => {
+    if (!cart || !checkout) {
+      push("/");
+    }
+  }, []);
+
+  if (!cart || !checkout) {
+    return <></>;
   }
 
-  const image = `${cart!.thumbnail.path}.${cart!.thumbnail.extension}`;
-  const title = cart!.title;
+  const image = `${cart?.thumbnail.path}.${cart?.thumbnail.extension}`;
+  const title = cart?.title;
   const price = cart?.prices[0].price;
 
   const { firstName, lastName, email } = checkout!;
